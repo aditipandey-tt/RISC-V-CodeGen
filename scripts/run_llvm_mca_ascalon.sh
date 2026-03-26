@@ -12,7 +12,7 @@ VL[gemm_]=8
 VL[vector_mac]=8
 VL[gather_op]=1
 VL[spmv_csr]=8          # fixed to use gather VL=8
-VL[reduction_loop]=1    # effectively scalar after fixes
+VL[reduction_loop]=8    # effectively scalar after fixes
 VL[tridiag_solve]=1
 VL[montecarlo_pi]=1     # effectively scalar after fixes
 
