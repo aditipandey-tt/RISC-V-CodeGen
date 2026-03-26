@@ -12,9 +12,9 @@ VL[gemm_]=8
 VL[vector_mac]=8
 VL[gather_op]=1
 VL[spmv_csr]=8          # fixed to use gather VL=8
-VL[reduction_loop]=1    # effectively scalar after your fixes
+VL[reduction_loop]=1    # effectively scalar after fixes
 VL[tridiag_solve]=1
-VL[montecarlo_pi]=1     # effectively scalar after your fixes
+VL[montecarlo_pi]=1     # effectively scalar after fixes
 
 kernels="dotprod_ relu_ softmax_ gemm_ vector_mac gather_op spmv_csr reduction_loop tridiag_solve montecarlo_pi"
 

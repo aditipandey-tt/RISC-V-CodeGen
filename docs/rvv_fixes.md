@@ -17,20 +17,23 @@ For each kernel we record:
 
 ## Kernels with additional fixes
 
-- **spmv_csr**  
-  Original code-gen fell back to VL=1 and did not use RVV gather. We
-  applied fixes (e.g., `restrict` pointers, `-ffast-math`) so that Clang
-  generates a VL=8 loop using gather instructions. With the fixed loop:
+- **spmv_csr**
+
+  The original version compiled to a VL=1 path and did not use RVV gather.
+  We applied fixes (e.g., `restrict` pointers, `-ffast-math`) so that
+  Clang generates a VL=8 loop using gather instructions. With the fixed
+  loop:
   - Scalar: 313 cycles
-  - Vector: 3812 cycles, VL=8
+  - Vector: 3812 cycles, VL = 8
   - VecCycles/VL = 3812 / 8 = 476.5
   - Speedup = 313 / (3812/8) ≈ 0.65, close to HAPS (~0.77×).
 
-- **reduction_loop** and **montecarlo_pi**  
-  We cleaned up the core loops, but auto-vectorization remains
-  effectively scalar for these patterns. In the llvm-mca analysis we
-  treat both with VL=1 and observe < 1× speedup, which matches the HAPS
-  behavior qualitatively.
+- **reduction_loop** and **montecarlo_pi**
+
+  We cleaned up the core loops, but auto-vectorization remains effectively
+  scalar for these patterns. In the llvm-mca analysis we treat both with
+  VL=1 and observe < 1× speedup, which matches the HAPS behavior
+  qualitatively.
 
 ## Loop-only timing (HAPS)
 
